@@ -1,0 +1,28 @@
+$toolbar-height: 70px;
+
+.main {
+  width: 100%;
+  height: 100vh;
+}
+
+.main-container {
+  width: 100%;
+  height: calc(100vh - $toolbar-height);
+}
+
+.main-sidenav-content {
+  height: 100%;
+  padding: 20px;
+}
+
+.main-sidenav {
+  padding: 20px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.main-toolbar {
+    height: $toolbar-height;
+}

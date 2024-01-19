@@ -1,0 +1,30 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="main-form" action="">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Lastname</mat-label>
+      <input formControlName="lastname" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput type="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" matInput type="password" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role" >
+        <mat-option value = "admin">Admin</mat-option>
+        <mat-option value = "user">User</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary">Save</button>
+  </form>
+  <button mat-flat-button (click)="onTest()" color="primary">Mark as untouched?</button>
+<pre>
+  {{ studentForm.value | json }}
+</pre>
