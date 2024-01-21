@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../students.component';
 import { StudentArrayDbService } from '../../../../../../core/services/student-array-db.service';
@@ -8,18 +8,19 @@ import { StudentArrayDbService } from '../../../../../../core/services/student-a
   templateUrl: './student-form.component.html',
   styleUrl: './student-form.component.scss'
 })
-export class StudentFormComponent {
+export class StudentFormComponent implements OnChanges {
 
   studentForm: FormGroup
 
   @Output()
   studentListChange = new EventEmitter();
 
-  // @Input()
-  // studentToEdit: any
+  @Input()
+  studentToEdit: any
 
   constructor(private fb: FormBuilder, private studentsDb: StudentArrayDbService) {
     this.studentForm = this.fb.group({
+      id: this.fb.control(null),
       name: this.fb.control("", Validators.required),
       lastname: this.fb.control("", Validators.required),
       email: this.fb.control("", Validators.required),
@@ -32,17 +33,23 @@ export class StudentFormComponent {
   onSubmit(): void {
     if (!this.studentForm.valid) {
       this.studentForm.markAllAsTouched();
-      //alert("Macho! completame las cosas");
-    } else {
+    } else if (!this.studentForm.value.id) {
       this.studentsDb.addStudent(this.studentForm.value)
-      console.log(this.studentForm.value)
-      this.studentListChange.emit();
-      this.studentForm.reset();
+    } else {
+      this.studentsDb.updateStudent(this.studentForm.value)
     }
+    this.studentListChange.emit();
+    this.studentForm.reset();
   }
 
   onTest(): void {
-console.log("entro")
+    console.log(this.studentForm.value.id)
 
+  }
+
+  ngOnChanges() {
+    if (this.studentToEdit) {
+      this.studentForm.setValue(this.studentToEdit)
+    }
   }
 }

@@ -29,6 +29,11 @@ export class StudentArrayDbService {
     return this.studentList
   }
 
+  updateStudent(student: Student) {
+    const index = this.studentList.findIndex(el => el.id == student.id)
+    this.studentList[index] = student;
+  }
+
   getAllStudents() {
     return this.studentList
   }

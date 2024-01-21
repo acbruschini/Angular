@@ -2,3 +2,9 @@
     display: grid;
     margin-bottom: 30px;
 }
+.invisible{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}

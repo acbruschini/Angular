@@ -1,5 +1,8 @@
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="main-form" action="">
-    <mat-form-field>
+  <mat-form-field ngClass="invisible">
+    <input formControlName="id" matInput type="text" />
+  </mat-form-field>  
+  <mat-form-field>
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput type="text" />
     </mat-form-field>
@@ -18,13 +21,13 @@
     <mat-form-field>
       <mat-label>Role</mat-label>
       <mat-select formControlName="role" >
-        <mat-option value = "admin">Admin</mat-option>
-        <mat-option value = "user">User</mat-option>
+        <mat-option value = "ADMIN">Admin</mat-option>
+        <mat-option value = "USER">User</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-flat-button color="primary">Save</button>
   </form>
-  <button mat-flat-button color="primary">Mark as untouched?</button>
+  <button (click)="onTest()" mat-flat-button color="primary">Mark as untouched?</button>
 <pre>
   {{ studentForm.value | json }}
 </pre>

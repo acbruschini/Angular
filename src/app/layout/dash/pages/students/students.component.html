@@ -1,5 +1,5 @@
 <div class="main">
-    <app-student-form (studentListChange)="onListChange()"></app-student-form>
+    <app-student-form (studentListChange)="onListChange()" [studentToEdit]="this.passEdit"></app-student-form>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

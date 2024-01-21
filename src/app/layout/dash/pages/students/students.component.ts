@@ -20,10 +20,8 @@ export class StudentsComponent {
 
   displayedColumns: string[] = ['id', 'name', 'lastname', 'email', 'password', 'role', 'delete', 'edit'];
   dataSource = this.studentsDb.getAllStudents();
-
-  @Output()
-  studentEdit = new EventEmitter();
-  
+  passEdit: Student | null = null
+   
   constructor(private studentsDb: StudentArrayDbService) { }
 
   onListChange(): void {
@@ -36,13 +34,12 @@ export class StudentsComponent {
   }
 
   onPressStudentEdit(student:Student) {
-    console.log("test")
-    console.log("test2",this.studentEdit.emit(student))
-   
+    this.passEdit = student
   }
 
   updateList() {
+    console.log("UPDATELIST")
     this.dataSource = [...this.studentsDb.getAllStudents()]
-    console.log(this.dataSource)
+    
   }
 }
