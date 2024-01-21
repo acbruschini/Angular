@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { StudentArrayDbService } from '../../../../core/services/student-array-db.service';
 
 export interface Student {
   id: number;
@@ -9,14 +10,6 @@ export interface Student {
   role: string;
 }
 
-const studentList: Student[] = [
-  {id: Date.now() + Math.floor(Math.random()*100), name: "Pablo", lastname: "Stanley", email: "paulstanley@gmail.com", password: "soyElCapo", role: "ADMIN"},
-  {id: Date.now() + Math.floor(Math.random()*100), name: "Eugenio", lastname: "Simmons", email: "genesimmons@gmail.com", password: "soyElMasCapo", role: "ADMIN"},
-  {id: Date.now() + Math.floor(Math.random()*100), name: "Pedro", lastname: "Criss", email: "petercriss@gmail.com", password: "meGustaLaFaFaFa", role: "USER"},
-  {id: Date.now() + Math.floor(Math.random()*100), name: "Pablo", lastname: "Frehley", email: "acefrehley@gmail.com", password: "meGustaElVino", role: "USER"},
-  
-]
-
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
@@ -26,24 +19,30 @@ const studentList: Student[] = [
 export class StudentsComponent {
 
   displayedColumns: string[] = ['id', 'name', 'lastname', 'email', 'password', 'role', 'delete', 'edit'];
-  dataSource = studentList;
+  dataSource = this.studentsDb.getAllStudents();
 
-  onStudentSubmitted(event: Student):void {
-    this.addStudent(event);
-  }
-
-  onStudentEdit(event: Student):void {
-    
-  }
-
-  onStudentDelete(student: Student):void {
-    const dataSourceFiltered = this.dataSource.filter(el => el.id != student.id)
-    this.dataSource = [...dataSourceFiltered];
-  }
+  @Output()
+  studentEdit = new EventEmitter();
   
-  addStudent(newStudent: Student):void {
-    this.dataSource = [...this.dataSource, {...newStudent, id: Date.now() + Math.floor(Math.random()*100)}] 
+  constructor(private studentsDb: StudentArrayDbService) { }
+
+  onListChange(): void {
+    this.updateList()
   }
 
+  onStudentDelete(id: number): void {
+    this.studentsDb.deleteStudent(id);
+    this.updateList()
+  }
 
+  onPressStudentEdit(student:Student) {
+    console.log("test")
+    console.log("test2",this.studentEdit.emit(student))
+   
+  }
+
+  updateList() {
+    this.dataSource = [...this.studentsDb.getAllStudents()]
+    console.log(this.dataSource)
+  }
 }
