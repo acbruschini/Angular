@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../students.component';
 
@@ -10,6 +10,9 @@ import { Student } from '../../students.component';
 export class StudentFormComponent {
 
   studentForm: FormGroup
+  
+  @Input()
+  prevStudent: Student | null = {id: 4, name: "Prevtest", lastname: "lastname", email: "email", password: "pass", role: "ADMIN"}
 
   @Output()
   studentSubmitted = new EventEmitter();
@@ -22,6 +25,7 @@ export class StudentFormComponent {
       password: this.fb.control("", Validators.required),
       role: this.fb.control("", Validators.required)
     })
+    console.log("Se instancio student-form")
   }
 
   onSubmit(): void {
@@ -35,6 +39,9 @@ export class StudentFormComponent {
   }
 
   onTest(): void {
-    console.log("test")
+    this.studentForm.setValue({...this.studentForm.value, email: this.prevStudent?.email})
+    console.log(this.studentForm.value)
+    console.log(this.studentForm)
+
   }
 }

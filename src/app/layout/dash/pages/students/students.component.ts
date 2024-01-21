@@ -32,6 +32,10 @@ export class StudentsComponent {
     this.addStudent(event);
   }
 
+  onStudentEdit(event: Student):void {
+    
+  }
+
   onStudentDelete(student: Student):void {
     const dataSourceFiltered = this.dataSource.filter(el => el.id != student.id)
     this.dataSource = [...dataSourceFiltered];
@@ -40,4 +44,6 @@ export class StudentsComponent {
   addStudent(newStudent: Student):void {
     this.dataSource = [...this.dataSource, {...newStudent, id: Date.now() + Math.floor(Math.random()*100)}] 
   }
+
+
 }
