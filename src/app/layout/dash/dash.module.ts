@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { StudentsModule } from './pages/students/students.module';
 
-
 @NgModule({
   declarations: [
     DashComponent
@@ -18,7 +17,7 @@ import { StudentsModule } from './pages/students/students.module';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    StudentsModule
+    StudentsModule,
   ],
   exports:[DashComponent]
 })

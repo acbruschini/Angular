@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { StudentArrayDbService } from '../../../../core/services/student-array-db.service';
+import { TableColumn } from '../../../../shared/components/array-table/array-table.component';
 
 export interface Student {
   id: number;
@@ -16,30 +17,45 @@ export interface Student {
   styleUrl: './students.component.scss'
 })
 
-export class StudentsComponent {
+export class StudentsComponent implements OnInit{
 
-  displayedColumns: string[] = ['id', 'name', 'lastname', 'email', 'password', 'role', 'delete', 'edit'];
-  dataSource = this.studentsDb.getAllStudents();
-  passEdit: Student | null = null
+  tableColumns: TableColumn[] = [
+    {label: "ID", def: "id", dataKey: "id"},
+    {label: "Name", def: "name", dataKey: "name"},
+    {label: "Last Name", def: "lastname", dataKey: "lastname"},
+    {label: "Email", def: "email", dataKey: "email"},
+    {label: "Password", def: "password", dataKey: "password"},
+    {label: "Role", def: "role", dataKey: "role"},
+    {label: "Edit Record", def: "edit", dataKey: "id", edit: "x", delete: "x"}
+  ];
+  
+  dataSource: Student[] = [];
+  student: Student | null = null
    
-  constructor(private studentsDb: StudentArrayDbService) { }
+  constructor(private studentsDb: StudentArrayDbService) {
+  }
 
-  onListChange(): void {
-    this.updateList()
+  ngOnInit(): void {
+    this.studentsDb.studentsObs.subscribe(students => {
+      this.dataSource = [...students]
+    })
+  }
+
+  onSubmitForm(student: Student) {
+    if(!student.id) {
+      this.studentsDb.addStudent(student)
+    } else {
+      this.studentsDb.updateStudent(student)
+    }
   }
 
   onStudentDelete(id: number): void {
     this.studentsDb.deleteStudent(id);
-    this.updateList()
   }
 
-  onPressStudentEdit(student:Student) {
-    this.passEdit = student
+  onStudentEdit(student:Student) {
+    //Coloca todos los datos en el form al llenar this.student que es @input de student-form
+    this.student = student
   }
 
-  updateList() {
-    console.log("UPDATELIST")
-    this.dataSource = [...this.studentsDb.getAllStudents()]
-    
-  }
 }

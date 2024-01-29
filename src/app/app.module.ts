@@ -8,7 +8,7 @@ import { DashModule } from './layout/dash/dash.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
