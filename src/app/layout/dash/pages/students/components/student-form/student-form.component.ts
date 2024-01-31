@@ -32,16 +32,11 @@ export class StudentFormComponent implements OnChanges {
   onSubmit(): void {
     if (!this.studentForm.valid) {
       this.studentForm.markAllAsTouched();
-      console.log("No es valido")
-    } else if (!this.studentForm.value.id) {
-      console.log("Creando")
-      this.onSubmitForm.emit(this.studentForm.value)
     } else {
-      console.log("Editando")
       this.onSubmitForm.emit(this.studentForm.value)
+      this.studentForm.reset();
+      this.studentToEdit = null
     }
-    //this.studentListChange.emit();
-    this.studentForm.reset();
   }
 
   ngOnChanges() {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { StudentArrayDbService } from '../../../../core/services/student-array-db.service';
 import { TableColumn } from '../../../../shared/components/array-table/array-table.component';
 
@@ -20,7 +20,7 @@ export interface Student {
 export class StudentsComponent implements OnInit{
 
   tableColumns: TableColumn[] = [
-    {label: "ID", def: "id", dataKey: "id"},
+    // {label: "ID", def: "id", dataKey: "id"},
     {label: "Name", def: "name", dataKey: "name"},
     {label: "Last Name", def: "lastname", dataKey: "lastname"},
     {label: "Email", def: "email", dataKey: "email"},
