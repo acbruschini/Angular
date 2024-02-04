@@ -18,8 +18,8 @@ export class CoursesComponent implements OnInit {
     {label: "ID", def: "id", dataKey: "id"},
     {label: "Name", def: "name", dataKey: "name"},
     {label: "Description", def: "description", dataKey: "description"},
-    {label: "Start Date", def: "startDate", dataKey: "startDate"},
-    {label: "End Date", def: "endDate", dataKey: "endDate"},
+    {label: "Start Date", def: "startDate", dataKey: "startDate", pipe: "date"},
+    {label: "End Date", def: "endDate", dataKey: "endDate", pipe: "date"},
     {label: "Edit Record", def: "edit", dataKey: "id", edit: "x", delete: "x"}
   ];
 

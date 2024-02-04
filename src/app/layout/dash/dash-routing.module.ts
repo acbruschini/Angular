@@ -7,7 +7,7 @@ import { StudentsComponent } from "./pages/students/students.component";
 
 const routes: Routes = [
     {
-        path: "", //Va vacio porque el dashboard/ me lo da el approuting
+        path: "", //Va vacio porque el dashboard/ me lo da el app-routing
         component: DashComponent,
         children: [
             {

@@ -6,6 +6,7 @@ export interface TableColumn {
   dataKey: string;
   edit?: string;
   delete?: string;
+  pipe?: string;
 }
 
 const contenido = [
