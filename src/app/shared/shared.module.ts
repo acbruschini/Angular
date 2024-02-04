@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatListModule} from '@angular/material/list';
 
 import { PipesModule } from './pipes/pipes.module';
 import { DirectivesModule } from './directives/directives.module';
@@ -32,6 +33,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     DirectivesModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatListModule,
 
   ],
   exports: [
@@ -47,6 +49,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     DirectivesModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatListModule,
   ]
 })
 export class SharedModule { }

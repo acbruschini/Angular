@@ -17,6 +17,9 @@ $toolbar-height: 70px;
 
 .main-sidenav {
   padding: 20px;
+  width: 150px;
+  display: grid;
+  gap: 20px
 }
 
 .toolbar-spacer {

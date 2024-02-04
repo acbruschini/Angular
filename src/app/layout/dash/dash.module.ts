@@ -6,6 +6,7 @@ import { StudentsModule } from './pages/students/students.module';
 import { CoursesModule } from './pages/courses/courses.module';
 
 import { SharedModule } from '../../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     StudentsModule,
     SharedModule,
-    CoursesModule
+    CoursesModule,
+    RouterModule
   ],
   exports:[DashComponent]
 })

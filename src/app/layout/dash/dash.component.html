@@ -6,32 +6,46 @@
     <span>My App</span>
     <span class="toolbar-spacer"></span>
     <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
     >
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button
-  mat-icon-button
-  class="example-icon"
-  aria-label="Example icon-button with share icon"
-  >
-  <mat-icon>share</mat-icon>
-</button>
-</mat-toolbar>
-<mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="main-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    @if (showFiller) {
-      <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    }
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+      <mat-icon>favorite</mat-icon>
     </button>
-  </mat-drawer>
-  <div class="main-sidenav-content">
-        <app-courses></app-courses>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-drawer-container class="main-container" autosize>
+    <mat-drawer #drawer class="main-sidenav" mode="side">
+      <mat-nav-list>
+        <a
+          routerLink="students"
+          routerLinkActive
+          #students="routerLinkActive"
+          [activated]="students.isActive"
+          mat-list-item
+          >Students</a
+        >
+        <a
+          routerLink="courses"
+          routerLinkActive
+          #courses="routerLinkActive"
+          [activated]="courses.isActive"
+          mat-list-item
+          >Courses</a
+        >
+      </mat-nav-list>
+      <!-- EJEMPLO SIN MATERIAL 
+        <button routerLink="students">Students</button>
+      <button routerLink="courses">Courses</button> -->
+    </mat-drawer>
+    <div class="main-sidenav-content">
+      <router-outlet></router-outlet>
     </div>
   </mat-drawer-container>
 </div>
