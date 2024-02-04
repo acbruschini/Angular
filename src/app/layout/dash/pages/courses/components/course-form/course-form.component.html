@@ -1,0 +1,36 @@
+<form
+  [formGroup]="courseForm"
+  (ngSubmit)="onSubmit()"
+  class="main-form"
+  action=""
+>
+  <mat-form-field ngClass="invisible">
+    <input formControlName="id" matInput type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input formControlName="description" matInput type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Start Date</mat-label>
+    <input matInput formControlName="startDate" [matDatepicker]="picker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>End Date</mat-label>
+    <input matInput formControlName="endDate" [matDatepicker]="picker1" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  <button mat-flat-button color="primary">
+    {{ courseToEdit ? "Update" : "Save" }}
+  </button>
+</form>
+<!-- <pre>{{ courseForm.value | json }}</pre> -->
