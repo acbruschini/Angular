@@ -7,6 +7,7 @@ import { CoursesModule } from './pages/courses/courses.module';
 
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { DashRoutingModule } from './dash-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     StudentsModule,
     SharedModule,
     CoursesModule,
-    RouterModule
+    RouterModule,
+    DashRoutingModule
   ],
   exports:[DashComponent]
 })
