@@ -4,6 +4,7 @@ import { DashComponent } from './dash.component';
 
 import { StudentsModule } from './pages/students/students.module';
 import { CoursesModule } from './pages/courses/courses.module';
+import { InscriptionsModule } from './pages/inscriptions/inscriptions.module';
 
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
@@ -16,6 +17,7 @@ import { DashRoutingModule } from './dash-routing.module';
   imports: [
     CommonModule,
     StudentsModule,
+    InscriptionsModule,
     SharedModule,
     CoursesModule,
     RouterModule,

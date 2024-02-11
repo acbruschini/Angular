@@ -11,7 +11,7 @@
     {
       "id": "2",
       "name": "Eugenio",
-      "lastname": "Simmons",
+      "lastname": "Simmons2",
       "email": "genesimmons@gmail.com",
       "password": "soyElMasCapo",
       "role": "ADMIN"
@@ -90,6 +90,14 @@
       "description": "Domina los conceptos fundamentales de JavaScript para el desarrollo web",
       "startDate": "2024-02-25T03:00:00.000Z",
       "endDate": "2024-04-01T03:00:00.000Z"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": "1",
+      "studentId": "4",
+      "courseId": "7",
+      "date": "2024-02-20T03:00:00.000Z"
     }
   ]
 }

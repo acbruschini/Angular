@@ -39,6 +39,14 @@
           mat-list-item
           >Courses</a
         >
+        <a
+          routerLink="inscriptions"
+          routerLinkActive
+          #insc="routerLinkActive"
+          [activated]="insc.isActive"
+          mat-list-item
+          >Inscriptions</a
+        >
       </mat-nav-list>
       <!-- EJEMPLO SIN MATERIAL 
         <button routerLink="students">Students</button>

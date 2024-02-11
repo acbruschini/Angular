@@ -1,0 +1,31 @@
+<form
+  [formGroup]="inscriptionsForm"
+  (ngSubmit)="onSubmit()"
+  ngClass="main-form"
+>
+  <mat-form-field ngClass="invisible">
+    <input formControlName="id" matInput type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Choose a Student</mat-label>
+    <mat-select formControlName="studentId" >
+      @for (student of studentList; track student.id) {
+      <mat-option value="{{ student.id }}">{{
+        student.name + " " + student.lastname
+      }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Choose a Course</mat-label>
+    <mat-select formControlName="courseId">
+      @for (course of coursesList; track course.id) {
+      <mat-option value="{{ course.id }}">{{ course.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <button mat-flat-button color="primary">
+    {{ inscriptionToEdit ? "Update" : "Inscribe" }}
+  </button>
+</form>
+<pre>{{inscriptionsForm.value | json}}</pre>
