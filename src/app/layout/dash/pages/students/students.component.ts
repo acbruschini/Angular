@@ -3,7 +3,7 @@ import { StudentArrayDbService } from '../../../../core/services/student-array-d
 import { TableColumn } from '../../../../shared/components/array-table/array-table.component';
 
 export interface Student {
-  id?: number;
+  id?: number | string;
   name: string;
   lastname: string;
   email: string;

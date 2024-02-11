@@ -47,7 +47,7 @@ export class InscriptionsArrayDbService {
     return this.httpClient.put(this.url + "/inscriptions/" + `${inscription.id}`,inscription).subscribe({ next: () => this.updateAndEmitBehavior() })
   }
 
-  getAllInscription() {
+  getAllInscriptions() {
     return this.httpClient.get<Inscription[]>(this.url + "/inscriptions")
   }
 

@@ -1,17 +1,12 @@
 <div class="main">
-  <app-inscriptions-form></app-inscriptions-form>
-  <!-- <app-course-form
-      [courseToEdit]="course"
-      (onSubmitForm)="onSubmitForm($event)"
-    ></app-course-form>
-    <app-array-table
-      [data]="dataSource"
-      [columns]="tableColumns"
-      (onDelete)="onCourseDelete($event)"
-      (onEdit)="onCourseEdit($event)"
-    ></app-array-table> -->
+  <app-inscriptions-form
+    [inscriptionToEdit]="inscription"
+    (onSubmitForm)="onSubmitForm($event)"
+  ></app-inscriptions-form>
   <app-array-table
     [data]="dataSource"
     [columns]="tableColumns"
+    (onDelete)="onCourseDelete($event)"
+    (onEdit)="onCourseEdit($event)"
   ></app-array-table>
 </div>

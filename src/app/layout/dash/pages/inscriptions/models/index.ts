@@ -1,5 +1,5 @@
 export interface Inscription {
-    id?: number,
+    id?: number | number,
     studentId: string,
     courseId: string,
     date: Date

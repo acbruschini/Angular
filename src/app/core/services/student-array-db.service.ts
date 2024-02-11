@@ -48,12 +48,10 @@ export class StudentArrayDbService {
   }
 
   getAllStudents() {
-    //let students: Student[]
     return this.httpClient.get<Student[]>(this.url + "/students")
-    //return students 
   }
 
-  getStudentById(id: number) {
+  getStudentById(id: number | string) {
     return this.httpClient.get<Student>(this.url + "/students/" + `${id}`)
   }
 

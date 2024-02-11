@@ -95,9 +95,15 @@
   "inscriptions": [
     {
       "id": "1",
-      "studentId": "4",
-      "courseId": "7",
+      "studentId": "3",
+      "courseId": "6",
       "date": "2024-02-20T03:00:00.000Z"
+    },
+    {
+      "id": "e65b",
+      "studentId": "1",
+      "courseId": "1",
+      "date": null
     }
   ]
 }

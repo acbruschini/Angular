@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Student } from '../../../students/students.component';
 import { StudentArrayDbService } from '../../../../../../core/services/student-array-db.service';
@@ -11,13 +11,18 @@ import { Inscription } from '../../models';
   templateUrl: './inscriptions-form.component.html',
   styleUrl: './inscriptions-form.component.scss'
 })
-export class InscriptionsFormComponent implements OnInit{
+export class InscriptionsFormComponent implements OnChanges {
 
   inscriptionsForm: FormGroup
   studentList: Student[] = []
   coursesList: Course[] = []
+
+  @Output()
+  onSubmitForm = new EventEmitter;
+
+  @Input()
   inscriptionToEdit: Inscription | null = null
-  
+
   constructor(private fb: FormBuilder, private studentsDb: StudentArrayDbService, private coursesDb: CourseArrayDbService) {
     this.inscriptionsForm = this.fb.group({
       id: this.fb.control(null),
@@ -26,13 +31,26 @@ export class InscriptionsFormComponent implements OnInit{
       date: this.fb.control("")
     })
   }
+
+  ngOnChanges(): void {
+    if (this.inscriptionToEdit) {
+      console.log(this.inscriptionToEdit)
+      this.inscriptionsForm.setValue(this.inscriptionToEdit)
+    }
+  }
+
   ngOnInit(): void {
-   this.studentsDb.studentsObs.subscribe( data => this.studentList = data);
-   this.coursesDb.coursesObs$.subscribe( data => this.coursesList = data);
+    this.studentsDb.studentsObs.subscribe(data => this.studentList = data);
+    this.coursesDb.coursesObs$.subscribe(data => this.coursesList = data);
   }
 
   onSubmit() {
-    console.log(this.studentList)
-    console.log(this.coursesList)
+    if (!this.inscriptionsForm.valid) {
+      this.inscriptionsForm.markAllAsTouched();
+    } else {
+      this.onSubmitForm.emit(this.inscriptionsForm.value)
+      this.inscriptionsForm.reset();
+      this.inscriptionToEdit = null
+    }
   }
 }
