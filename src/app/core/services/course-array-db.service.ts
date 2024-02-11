@@ -43,4 +43,7 @@ export class CourseArrayDbService {
     return this.httpClient.get<Course[]>(this.url + "/courses")
   }
 
+  getCourseById(id: number | string) {
+    return this.httpClient.get<Course>(this.url + "/courses/" + `${id}`)
+  }
 }

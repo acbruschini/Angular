@@ -34,7 +34,6 @@ export class InscriptionsFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.inscriptionToEdit) {
-      console.log(this.inscriptionToEdit)
       this.inscriptionsForm.setValue(this.inscriptionToEdit)
     }
   }
