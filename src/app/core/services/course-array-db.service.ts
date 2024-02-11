@@ -1,51 +1,46 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Course } from '../../layout/dash/pages/courses/models';
-
-let coursesList: Course[] = [
-  { id: Date.now() + Math.floor(Math.random() * 100), name: "Macromedia Flash", description: "Este es un curso de la nueva tecnologia Flash", startDate: new Date('2024-12-17'), endDate: new Date('2025-12-17')},
-  { id: Date.now() + Math.floor(Math.random() * 100), name: "Basic", description: "Conoce este nuevo y vigente lenguaje de programacion", startDate: new Date('2024-12-10'), endDate: new Date('2025-12-10')},
-  { id: Date.now() + Math.floor(Math.random() * 100), name: "Armado de Originales de Imprenta", description: "Aprende este arte necesario y unico", startDate: new Date('2024-12-07'), endDate: new Date('2025-12-07')},
-]
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CourseArrayDbService {
-
+  
+  url: string = `${environment._API_URL}:${environment._API_PORT}`;
   private courses$: BehaviorSubject<Course[]>;
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.courses$ = new BehaviorSubject<Course[]>([]);
-    this.courses$.next(coursesList);
+    this.updateAndEmitBehavior()
   }
 
   get coursesObs$() {
     return this.courses$.asObservable();
   }
 
-  addCourse(course: Course) {
-    let id = Date.now() + Math.floor(Math.random() * 100);
-    coursesList.push({ ...course, id });
-    this.courses$.next(coursesList);
+  private updateAndEmitBehavior() {
+    this.httpClient.get<Course[]>(this.url + "/courses").subscribe({ next: (data) => { this.courses$.next(data) } })
   }
 
-  deleteCourse(id: number){
-    const dataSourceFiltered = coursesList.filter(el => el.id != id)
-    coursesList = [...dataSourceFiltered];
-    this.courses$.next(coursesList);
+  addCourse(course: Course) {
+    return this.httpClient.post(this.url + "/courses", course).subscribe({next: () => this.updateAndEmitBehavior()})
+  }
+
+  deleteCourse(id: number) {
+    return this.httpClient.delete(this.url + "/courses/" + `${id}`).subscribe({next: () => this.updateAndEmitBehavior()})
   }
 
 
   updateCourse(course: Course) {
-    const index = coursesList.findIndex(el => el.id == course.id)
-    coursesList[index] = course;
-    this.courses$.next(coursesList);
+    return this.httpClient.put(this.url + "/courses/" + `${course.id}`, course).subscribe({next: () => this.updateAndEmitBehavior()})
   }
 
   getAllCourses() {
-    return coursesList;
+    return this.httpClient.get<Course[]>(this.url + "/courses")
   }
 
 }

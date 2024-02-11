@@ -1,0 +1,95 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Pablo",
+      "lastname": "Stanley",
+      "email": "paulstanley@gmail.com",
+      "password": "soyElCapo",
+      "role": "ADMIN"
+    },
+    {
+      "id": "2",
+      "name": "Eugenio",
+      "lastname": "Simmons",
+      "email": "genesimmons@gmail.com",
+      "password": "soyElMasCapo",
+      "role": "ADMIN"
+    },
+    {
+      "id": "3",
+      "name": "Pedro",
+      "lastname": "Criss",
+      "email": "petercriss@gmail.com",
+      "password": "meGustaLaFaFaFa",
+      "role": "USER"
+    },
+    {
+      "id": "4",
+      "name": "Pablo",
+      "lastname": "Frehley",
+      "email": "acefrehley@gmail.com",
+      "password": "meGustaElVino",
+      "role": "USER"
+    },
+    {
+      "id": "1c4e",
+      "name": "vvsdvds",
+      "lastname": "vdsvdsvds",
+      "email": "vdsdvvd",
+      "password": "ssvdvsdsdv",
+      "role": "ADMIN"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "name": "Angular JS",
+      "description": "Aprende a realizar aplicaciones frontend con este fabuloso framework",
+      "startDate": "2024-02-01T03:00:00.000Z",
+      "endDate": "2024-02-01T03:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "name": "React Native",
+      "description": "Descubre cómo crear aplicaciones móviles con React Native",
+      "startDate": "2024-02-15T03:00:00.000Z",
+      "endDate": "2024-03-15T03:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "name": "Python Programming",
+      "description": "Aprende a programar en Python desde cero",
+      "startDate": "2024-03-01T03:00:00.000Z",
+      "endDate": "2024-04-01T03:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "name": "Java Development",
+      "description": "Domina el lenguaje de programación Java y crea aplicaciones potentes",
+      "startDate": "2024-02-20T03:00:00.000Z",
+      "endDate": "2024-04-01T03:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "name": "Data Science Fundamentals",
+      "description": "Explora los fundamentos de la ciencia de datos y análisis estadístico",
+      "startDate": "2024-03-10T03:00:00.000Z",
+      "endDate": "2024-04-20T03:00:00.000Z"
+    },
+    {
+      "id": "6",
+      "name": "HTML & CSS Basics",
+      "description": "Aprende los conceptos básicos de HTML y CSS para construir sitios web",
+      "startDate": "2024-03-05T03:00:00.000Z",
+      "endDate": "2024-04-05T03:00:00.000Z"
+    },
+    {
+      "id": "7",
+      "name": "JavaScript Essentials",
+      "description": "Domina los conceptos fundamentales de JavaScript para el desarrollo web",
+      "startDate": "2024-02-25T03:00:00.000Z",
+      "endDate": "2024-04-01T03:00:00.000Z"
+    }
+  ]
+}

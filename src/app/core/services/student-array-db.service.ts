@@ -1,27 +1,22 @@
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Student } from '../../layout/dash/pages/students/students.component';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-export class StudentArrayDbService{
-
-  studentList: Student[] = [
-    { id: Date.now() + Math.floor(Math.random() * 100), name: "Pablo", lastname: "Stanley", email: "paulstanley@gmail.com", password: "soyElCapo", role: "ADMIN" },
-    { id: Date.now() + Math.floor(Math.random() * 100), name: "Eugenio", lastname: "Simmons", email: "genesimmons@gmail.com", password: "soyElMasCapo", role: "ADMIN" },
-    { id: Date.now() + Math.floor(Math.random() * 100), name: "Pedro", lastname: "Criss", email: "petercriss@gmail.com", password: "meGustaLaFaFaFa", role: "USER" },
-    { id: Date.now() + Math.floor(Math.random() * 100), name: "Pablo", lastname: "Frehley", email: "acefrehley@gmail.com", password: "meGustaElVino", role: "USER" },
-
-  ]
-
+export class StudentArrayDbService {
+  
+  url: string = `${environment._API_URL}:${environment._API_PORT}`;
   private students$: BehaviorSubject<Student[]>
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.students$ = new BehaviorSubject<Student[]>([])
-    this.students$.next(this.studentList);
+    this.updateAndEmitBehavior();
   }
 
   // EXPONGO EL BEHAVIOR COMO OBSERVABLE
@@ -29,27 +24,31 @@ export class StudentArrayDbService{
     return this.students$.asObservable();
   }
 
-  addStudent(student: Student) {
-    let id = Date.now() + Math.floor(Math.random() * 100);
-    this.studentList.push({ ...student, id });
-    this.students$.next(this.studentList);
+  private updateAndEmitBehavior() {
+    this.httpClient.get<Student[]>(this.url + '/students').subscribe({
+      next: (data) => {
+        this.students$.next(data)
+      }
+    })
   }
 
-  deleteStudent(id: number){
-    const dataSourceFiltered = this.studentList.filter(el => el.id != id)
-    this.studentList = [...dataSourceFiltered];
-    this.students$.next(this.studentList);
+  addStudent(student: Student) {
+    return this.httpClient.post(this.url + "/students", student).subscribe({
+      next: () => this.updateAndEmitBehavior()
+    })
+  }
+
+  deleteStudent(id: number) {
+    return this.httpClient.delete(this.url + "/students/" + `${id}`).subscribe({ next: () => this.updateAndEmitBehavior() })
   }
 
 
   updateStudent(student: Student) {
-    const index = this.studentList.findIndex(el => el.id == student.id)
-    this.studentList[index] = student;
-    this.students$.next(this.studentList);
+    return this.httpClient.put(this.url + "/students/" + `${student.id}`,student).subscribe({ next: () => this.updateAndEmitBehavior() })
   }
 
   getAllStudents() {
-    return this.studentList;
+    return this.httpClient.get<Student[]>(this.url + "/students")
   }
 
 }

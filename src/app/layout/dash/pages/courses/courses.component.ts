@@ -35,6 +35,7 @@ export class CoursesComponent implements OnInit {
 
   onSubmitForm(course: Course) {
     if(!course.id) {
+      delete course.id
       this.coursesDb.addCourse(course)
     } else {
       this.coursesDb.updateCourse(course)

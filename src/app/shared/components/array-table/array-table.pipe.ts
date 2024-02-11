@@ -8,7 +8,8 @@ export class ArrayTablePipe implements PipeTransform {
   transform(value: any, arg?: string): string {
     switch (arg) {
       case "date":
-        value = value.toLocaleString("es-AR")
+        let date = new Date(value)
+        value = date.toLocaleString("es-AR")
         break;
     }
     return value

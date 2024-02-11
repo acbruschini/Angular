@@ -3,7 +3,7 @@ import { StudentArrayDbService } from '../../../../core/services/student-array-d
 import { TableColumn } from '../../../../shared/components/array-table/array-table.component';
 
 export interface Student {
-  id: number;
+  id?: number;
   name: string;
   lastname: string;
   email: string;
@@ -43,6 +43,7 @@ export class StudentsComponent implements OnInit{
 
   onSubmitForm(student: Student) {
     if(!student.id) {
+      delete student["id"];
       this.studentsDb.addStudent(student)
     } else {
       this.studentsDb.updateStudent(student)
