@@ -4,8 +4,8 @@
       "id": "1",
       "name": "Pablo",
       "lastname": "Stanley",
-      "email": "paulstanley@gmail.com",
-      "password": "soyElCapo",
+      "email": "paul@gmail.com",
+      "password": "paul",
       "role": "ADMIN"
     },
     {

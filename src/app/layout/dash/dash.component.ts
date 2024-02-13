@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-dash',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class DashComponent {
   showFiller:boolean = false;
+  constructor(private authService: AuthService){
+
+  }
+
+  logout(){
+    this.authService.logout()
+  }
 }

@@ -1,0 +1,17 @@
+<div class="main">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>E mail</mat-label>
+      <input formControlName="email" matInput type="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" matInput type="password" />
+    </mat-form-field>
+    @if (error) {
+      <mat-error>{{error}}</mat-error>
+    }
+      <button mat-flat-button color="primary">Login</button>
+  </form>
+  <!-- <pre>{{ loginForm.value | json}}</pre> -->
+</div>
