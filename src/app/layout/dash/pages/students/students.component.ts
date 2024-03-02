@@ -1,6 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { StudentArrayDbService } from '../../../../core/services/student-array-db.service';
 import { TableColumn } from '../../../../shared/components/array-table/array-table.component';
+import { Store } from '@ngrx/store';
+import { StudentActions } from './store/student.actions';
+import { selectStudents } from './store/student.selectors';
+import { Subscription } from 'rxjs';
 
 export interface Student {
   id?: number | string;
@@ -17,7 +21,9 @@ export interface Student {
   styleUrl: './students.component.scss'
 })
 
-export class StudentsComponent implements OnInit{
+export class StudentsComponent implements OnInit, OnDestroy {
+
+  subscriptions: Subscription[] = [] 
 
   tableColumns: TableColumn[] = [
     // {label: "ID", def: "id", dataKey: "id"},
@@ -32,13 +38,15 @@ export class StudentsComponent implements OnInit{
   dataSource: Student[] = [];
   student: Student | null = null
    
-  constructor(private studentsDb: StudentArrayDbService) {
+  constructor(private studentsDb: StudentArrayDbService, private store: Store) {
   }
 
   ngOnInit(): void {
-    this.studentsDb.studentsObs.subscribe(students => {
-      this.dataSource = [...students]
-    })
+    this.store.dispatch(StudentActions.loadStudents())
+    // this.studentsDb.studentsObs.subscribe(students => {
+    //   this.dataSource = [...students]
+    // })
+    this.subscriptions.push(this.store.select(selectStudents).subscribe( data => this.dataSource = data)) //guarda la referencia a la suscripcion en el array para desuscribirse despues
   }
 
   onSubmitForm(student: Student) {
@@ -57,6 +65,11 @@ export class StudentsComponent implements OnInit{
   onStudentEdit(student:Student) {
     //Coloca todos los datos en el form al llenar this.student que es @input de student-form
     this.student = student
+  }
+
+    
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((suscription) => suscription.unsubscribe())
   }
 
 }

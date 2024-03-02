@@ -5,6 +5,10 @@ import { StudentFormComponent } from './components/student-form/student-form.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../../../../shared/components/components.module';
 import { SharedModule } from '../../../../shared/shared.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StudentEffects } from './store/student.effects';
+import { StoreModule } from '@ngrx/store';
+import { studentFeature } from './store/student.reducer';
 
 
 @NgModule({
@@ -16,7 +20,9 @@ import { SharedModule } from '../../../../shared/shared.module';
     CommonModule,
     ReactiveFormsModule,
     ComponentsModule,
-    SharedModule
+    SharedModule,
+    EffectsModule.forFeature([StudentEffects]),
+    StoreModule.forFeature(studentFeature), //Aca iria siempre el reducer, esto "activa" el store
   ],
   exports: [StudentsComponent]
 })
