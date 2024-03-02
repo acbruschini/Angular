@@ -21,6 +21,25 @@ export class StudentEffects {
     );
   });
 
+  createStudents$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(StudentActions.createStudent),
+      concatMap((action) =>
+        this.studentsDb.addStudent(action.student).pipe(
+          map(resp => StudentActions.createStudentSuccess( { data: resp })),
+          catchError(error => of(StudentActions.createStudentFailure({ error }))))
+      )
+    );
+  });
+
+  createStudentsSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(StudentActions.createStudentSuccess),
+      map(() => StudentActions.loadStudents())
+      )
+  });
 
   constructor(private actions$: Actions, private studentsDb: StudentArrayDbService) {}
 }

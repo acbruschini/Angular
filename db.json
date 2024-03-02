@@ -31,6 +31,46 @@
       "email": "acefrehley@gmail.com",
       "password": "meGustaElVino",
       "role": "USER"
+    },
+    {
+      "id": "90da",
+      "name": "Ariel",
+      "lastname": "Bruschini",
+      "email": "ariel@gmail.com",
+      "password": "123456",
+      "role": "ADMIN"
+    },
+    {
+      "id": "4175",
+      "name": "Jorge",
+      "lastname": "Peluquero",
+      "email": "fsdfsdfsd@gmail.com",
+      "password": "123465",
+      "role": "USER"
+    },
+    {
+      "id": "7848",
+      "name": "letrert",
+      "lastname": "dsfdsds",
+      "email": "dsfsdfsd@dfsfsd",
+      "password": "fdsfsdfds",
+      "role": "USER"
+    },
+    {
+      "id": "2fd8",
+      "name": "sdffdsdsf",
+      "lastname": "sdffdsfds",
+      "email": "fsfdsdffds@dfsdfsd.com",
+      "password": "fdsfsdfds",
+      "role": "ADMIN"
+    },
+    {
+      "id": "da5b",
+      "name": "fdssdfdsf",
+      "lastname": "fsdfdsfds",
+      "email": "fdssfdasfd@gmail.com",
+      "password": "fsdfdsfsdfsd",
+      "role": "ADMIN"
     }
   ],
   "courses": [

@@ -39,6 +39,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
   student: Student | null = null
    
   constructor(private studentsDb: StudentArrayDbService, private store: Store) {
+    
   }
 
   ngOnInit(): void {
@@ -52,7 +53,8 @@ export class StudentsComponent implements OnInit, OnDestroy {
   onSubmitForm(student: Student) {
     if(!student.id) {
       delete student["id"];
-      this.studentsDb.addStudent(student)
+      this.store.dispatch(StudentActions.createStudent({student: student}))
+      //this.studentsDb.addStudent(student)
     } else {
       this.studentsDb.updateStudent(student)
     }

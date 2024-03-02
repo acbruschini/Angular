@@ -32,10 +32,14 @@ export class StudentArrayDbService {
     })
   }
 
+  // addStudent(student: Student) {
+  //   return this.httpClient.post<Student>(this.url + "/students", student).subscribe({
+  //     next: () => this.updateAndEmitBehavior()
+  //   })
+  // }
+  
   addStudent(student: Student) {
-    return this.httpClient.post(this.url + "/students", student).subscribe({
-      next: () => this.updateAndEmitBehavior()
-    })
+    return this.httpClient.post<Student>(this.url + "/students", student)
   }
 
   deleteStudent(id: number) {
