@@ -32,23 +32,17 @@ export class StudentArrayDbService {
     })
   }
 
-  // addStudent(student: Student) {
-  //   return this.httpClient.post<Student>(this.url + "/students", student).subscribe({
-  //     next: () => this.updateAndEmitBehavior()
-  //   })
-  // }
-  
+ 
   addStudent(student: Student) {
     return this.httpClient.post<Student>(this.url + "/students", student)
   }
 
-  deleteStudent(id: number) {
-    return this.httpClient.delete(this.url + "/students/" + `${id}`).subscribe({ next: () => this.updateAndEmitBehavior() })
+  deleteStudent(id: number | string) {
+    return this.httpClient.delete<Student>(this.url + "/students/" + `${id}`)
   }
 
-
   updateStudent(student: Student) {
-    return this.httpClient.put(this.url + "/students/" + `${student.id}`,student).subscribe({ next: () => this.updateAndEmitBehavior() })
+    return this.httpClient.put<Student>(this.url + "/students/" + `${student.id}`,student)
   }
 
   getAllStudents() {

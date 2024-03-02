@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../students/students.component';
 import { StudentArrayDbService } from '../../../../../../core/services/student-array-db.service';
 import { CourseArrayDbService } from '../../../../../../core/services/course-array-db.service';
@@ -26,8 +26,8 @@ export class InscriptionsFormComponent implements OnChanges {
   constructor(private fb: FormBuilder, private studentsDb: StudentArrayDbService, private coursesDb: CourseArrayDbService) {
     this.inscriptionsForm = this.fb.group({
       id: this.fb.control(null),
-      studentId: this.fb.control(""),
-      courseId: this.fb.control(""),
+      studentId: this.fb.control("", Validators.required),
+      courseId: this.fb.control("", Validators.required),
       date: this.fb.control("")
     })
   }

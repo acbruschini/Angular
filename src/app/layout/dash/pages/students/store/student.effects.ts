@@ -41,5 +41,43 @@ export class StudentEffects {
       )
   });
 
+  deleteStudents$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(StudentActions.deleteStudent),
+      concatMap((action) =>
+        this.studentsDb.deleteStudent(action.id).pipe(
+          map(resp => StudentActions.deleteStudentSuccess( { data: resp })),
+          catchError(error => of(StudentActions.deleteStudentFailure({ error }))))
+      )
+    );
+  });
+
+  deleteStudentSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(StudentActions.deleteStudentSuccess),
+      map(() => StudentActions.loadStudents())
+      )
+  });
+
+  updateStudents$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(StudentActions.updateStudent),
+      concatMap((action) =>
+        this.studentsDb.updateStudent(action.student).pipe(
+          map(resp => StudentActions.updateStudentSuccess( { data: resp })),
+          catchError(error => of(StudentActions.updateStudentFailure({ error }))))
+      )
+    );
+  });
+
+  updateStudentSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(StudentActions.updateStudentSuccess),
+      map(() => StudentActions.loadStudents())
+      )
+  });
+
   constructor(private actions$: Actions, private studentsDb: StudentArrayDbService) {}
 }

@@ -46,17 +46,7 @@ export class InscriptionsComponent implements OnInit {
   constructor(private inscriptionDb: InscriptionsArrayDbService, private studentsDb: StudentArrayDbService, private courseDb: CourseArrayDbService) {
   }
   ngOnInit() {
-    //this.inscriptionDb.inscriptionsObs.subscribe( inscriptions => {this.dataSource = [...inscriptions]})
-    // this.inscriptionDb.inscriptionsObs.subscribe(inscriptions => {
-    //   this.dataSource_2 = inscriptions.map( async inscription => {
-    //     let student = await lastValueFrom(this.studentsDb.getStudentById(2))
-    //     let course = await lastValueFrom(this.courseDb.getCourseById(1))
-    //     return {id: inscription.id, studentName: student.lastname, courseName: course.name, date: inscription.date}
-    //   })
-
-    //   this.dataSource = [...inscriptions]
-    // })
-    
+ 
 
     this.inscriptionDb.inscriptionsObs.subscribe({
       next: (inscriptions) => {
@@ -67,30 +57,17 @@ export class InscriptionsComponent implements OnInit {
           return fin
         })
 
-        console.log("---------")
-        console.log(this.dataSource_2) // me devuelve un array de ZoneAwarePromis
-        console.log("---------")
         this.dataSource = [...inscriptions]
       }
     })
 
-    // console.log(this.dataSource)
-    // let student = await lastValueFrom(this.studentsDb.getStudentById(1))
-    // console.log(student)
   }
 
-  // private in2inTable (inscriptions: Inscription[]) {
-  //   const inscriptionsTable = inscriptions.map( async inscription => {
-  //     let student: Student = await lastValueFrom(this.studentsDb.getStudentById(inscription.studentId))
-  //     let inscriptionTableRow = {id: inscription.id, studentName: student.name, courseName: "Ejemplo", date: inscription.date}
-  //     return inscriptionTableRow
-  //   })
-  //   return inscriptionsTable
-  // }
 
   onSubmitForm(inscription: Inscription) {
     if (!inscription.id) {
       delete inscription.id
+      inscription = {...inscription, date: new Date()}
       this.inscriptionDb.addInscription(inscription)
     } else {
       this.inscriptionDb.updateInscription(inscription)

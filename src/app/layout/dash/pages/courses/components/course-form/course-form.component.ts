@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Course } from '../../models';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form',
@@ -21,10 +21,10 @@ export class CourseFormComponent implements OnChanges {
   constructor(private fb: FormBuilder) {
     this.courseForm = this.fb.group({
       id: this.fb.control(null),
-      name: this.fb.control(""),
-      description: this.fb.control(""),
-      startDate: this.fb.control(""),
-      endDate: this.fb.control(""),
+      name: this.fb.control("", Validators.required),
+      description: this.fb.control("", Validators.required),
+      startDate: this.fb.control("", Validators.required),
+      endDate: this.fb.control("", Validators.required),
     })
   }
 

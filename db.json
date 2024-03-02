@@ -35,42 +35,18 @@
     {
       "id": "90da",
       "name": "Ariel",
-      "lastname": "Bruschini",
+      "lastname": "Bruschiniw",
       "email": "ariel@gmail.com",
       "password": "123456",
       "role": "ADMIN"
     },
     {
-      "id": "4175",
-      "name": "Jorge",
-      "lastname": "Peluquero",
-      "email": "fsdfsdfsd@gmail.com",
-      "password": "123465",
+      "id": "fe26",
+      "name": "Leticia2",
+      "lastname": "Leoz",
+      "email": "letu@gmail.com",
+      "password": "fsdfsdfsd",
       "role": "USER"
-    },
-    {
-      "id": "7848",
-      "name": "letrert",
-      "lastname": "dsfdsds",
-      "email": "dsfsdfsd@dfsfsd",
-      "password": "fdsfsdfds",
-      "role": "USER"
-    },
-    {
-      "id": "2fd8",
-      "name": "sdffdsdsf",
-      "lastname": "sdffdsfds",
-      "email": "fsfdsdffds@dfsdfsd.com",
-      "password": "fdsfsdfds",
-      "role": "ADMIN"
-    },
-    {
-      "id": "da5b",
-      "name": "fdssdfdsf",
-      "lastname": "fsdfdsfds",
-      "email": "fdssfdasfd@gmail.com",
-      "password": "fsdfdsfsdfsd",
-      "role": "ADMIN"
     }
   ],
   "courses": [
@@ -132,22 +108,10 @@
       "date": "2024-02-20T03:00:00.000Z"
     },
     {
-      "id": "e65b",
-      "studentId": "1",
-      "courseId": "1",
-      "date": null
-    },
-    {
-      "id": "48e9",
-      "studentId": "4",
-      "courseId": "6",
-      "date": null
-    },
-    {
-      "id": "ddbc",
+      "id": "fdbb",
       "studentId": "2",
-      "courseId": "5",
-      "date": null
+      "courseId": "2",
+      "date": "2024-03-02T19:41:33.705Z"
     }
   ]
 }

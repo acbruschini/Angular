@@ -10,6 +10,11 @@ export const StudentActions = createActionGroup({
     'Create Student': props<{ student: Student }>(),
     'Create Student Success': props<{ data: Student }>(),
     'Create Student Failure': props<{ error: unknown }>(),
-    
+    'Delete Student': props<{ id: number | string }>(),
+    'Delete Student Success': props<{ data: Student }>(),
+    'Delete Student Failure': props<{ error: unknown }>(),
+    'Update Student': props<{ student: Student }>(),
+    'Update Student Success': props<{ data: Student }>(),
+    'Update Student Failure': props<{ error: unknown }>(),
   }
 });

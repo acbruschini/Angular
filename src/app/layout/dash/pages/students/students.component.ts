@@ -44,9 +44,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.dispatch(StudentActions.loadStudents())
-    // this.studentsDb.studentsObs.subscribe(students => {
-    //   this.dataSource = [...students]
-    // })
+    // Aca abajo me suscribo a UN SELECTOR, para que cuando cambie actualice
     this.subscriptions.push(this.store.select(selectStudents).subscribe( data => this.dataSource = data)) //guarda la referencia a la suscripcion en el array para desuscribirse despues
   }
 
@@ -54,14 +52,13 @@ export class StudentsComponent implements OnInit, OnDestroy {
     if(!student.id) {
       delete student["id"];
       this.store.dispatch(StudentActions.createStudent({student: student}))
-      //this.studentsDb.addStudent(student)
     } else {
-      this.studentsDb.updateStudent(student)
+      this.store.dispatch(StudentActions.updateStudent({student: student}))
     }
   }
 
   onStudentDelete(id: number): void {
-    this.studentsDb.deleteStudent(id);
+    this.store.dispatch(StudentActions.deleteStudent({id: id}))
   }
 
   onStudentEdit(student:Student) {
